@@ -1,8 +1,10 @@
-const botonApi=document.getElementById("BotonSgte");
+const botones=document.getElementById("botones");
 let pokelista=document.getElementById("ListaPoke");
 
-const LlamadaApi= ()=>{
-  fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=10')
+
+function listapoke(url){
+  pokelista.innerHTML="";
+  fetch(url)
   .then(res=>res.json())
   .then(res=> {
     for(let i of res.results){
@@ -10,20 +12,40 @@ const LlamadaApi= ()=>{
       .then(x=>x.json())
       .then(x=>{
         pokelista.innerHTML+= `
-        <img src="${x.sprites.front_default}" alt="">
+        <img src="${x.sprites.front_default}">
         <p>ID ${x.id}</p>
         <p>Nombre ${x.name}</p>
-        <p>Altura ${x.height}</p>
-        <p>Peso ${x.weight}</p>
-        <p>Tipo ${x.types[0].type.name}</p>
-        <p>Formas ${x.forms[0].name}</p>
-        <p>Habilidades ${x.abilities[0].ability.name}</p>
+        <p>Altura ${x.height/10} m</p>
+        <p>Peso ${x.weight/10} Kg</p>
+        <p>Tipo: `
+        for( let t of x.types){
+          pokelista.innerHTML+=`
+           <p> ${t.type.name}</p> 
+           `
+         }
+        pokelista.innerHTML+=`</p>
+        <p>Formas: `
+        for( let f of x.forms){
+          pokelista.innerHTML+=`
+           <p> ${f.name}</p> 
+           `
+         }
+        pokelista.innerHTML+=`</p>
+        <p>Habilidades:`
+        for( let a of x.abilities){
+          pokelista.innerHTML+=`
+           <p> ${a.ability.name}</p> 
+           `
+         }
+        pokelista.innerHTML+=`</p>
         <p>Ubicacion </p>
       </div>`
       })
+      botones.innerHTML = (res.previous) ? `<button onclick="listapoke('${res.previous}')">Atrás</button>` : "";
+      botones.innerHTML += (res.next) ? `<button onclick="listapoke('${res.next}')">Siguiente</button>` : "";
     }
   })
 }
 
+listapoke('https://pokeapi.co/api/v2/pokemon?offset=0&limit=10');
 
-botonApi.addEventListener('click',LlamadaApi);
