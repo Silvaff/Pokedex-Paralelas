@@ -3,8 +3,11 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const fetch = require('node-fetch');
+const cors = require('cors');
+
 
 // Constructor
+/*
 function pokemon(id, nombre, altura, peso, tipo, forma, habilidades, ubicacion, sprite){
     this.id = id;
     this.nombre = nombre;
@@ -16,8 +19,10 @@ function pokemon(id, nombre, altura, peso, tipo, forma, habilidades, ubicacion, 
     this.ubicacion = ubicacion;
     this.sprite = sprite;
 }
+*/
 
 // Fetch desde la API
+/*
 app.get('/pokemon/:id', (req, res) =>{
     let id = req.params.id;
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
@@ -29,6 +34,7 @@ app.get('/pokemon/:id', (req, res) =>{
         res.json(pokemonData);
     })
 });
+*/
 
 // Configuraciones
 app.set('port', process.env.PORT || 3000);
@@ -38,6 +44,7 @@ app.set('json spaces', 2);
 app.use(morgan('dev'));
 //app.use(express.urlencoded({extended: false}));
 app.use(express.json());
+app.use(cors());
 
 // Rutas
 app.use(require('./routes/pokemon'));
