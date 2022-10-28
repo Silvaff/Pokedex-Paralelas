@@ -3,9 +3,6 @@ const botones=document.getElementById("botones");
 const botonlista=document.getElementById("botonlista");
 const BusquedaPoke=document.getElementById("BusquedaPoke");
 
-
-
-
 function LlamadaApi(url) {
   pokelista.innerHTML="";
     fetch(url)
@@ -29,17 +26,21 @@ function LlamadaApi(url) {
             });
 
 
-            pokelista.innerHTML+= `<div class="card">
-          <img src="${x.sprites.front_default}" class="card-img-top">
-           <h5 class="card-title text-center">ID ${x.id} <br> ${x.name}</h5>
-           <p class="card-text text-center">         
-           Altura ${x.height/10} 
-           Peso ${x.weight/10} Kg <br>
-           Tipo: ${tipo}       
-           <br>Formas: ${formas}
-           <br> Habilidades: ${habilidades}
-           <br>   Ubicacion: </p>
-            </div>`
+            pokelista.innerHTML+= `<div class="card" >
+            <img src="${x.sprites.front_default}">
+              <div class="card-body">
+                <h5 class="card-title" align="center">${x.name}</h5>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">ID: ${x.id}</li>
+                  <li class="list-group-item">Altura: ${x.height/10} m</li>
+                  <li class="list-group-item">Peso: ${x.weight/10} Kg</li>
+                  <li class="list-group-item">Tipo: ${tipo} </li>        
+                  <li class="list-group-item">Formas: ${formas}</li>  
+                  <li class="list-group-item">Habilidades: ${habilidades}</li> 
+                </ul> 
+              </div>
+          </div>
+          `
           
           });
       };
@@ -77,21 +78,20 @@ function buscar(){
   });
 
 
-  BusquedaPoke.innerHTML+= `<div class="card">
-<div class="row g-0">
-<div class="col-md-4">
-<img src="${res.sprites.front_default}" class="img-fluid rounded-start" width="300" height="400">
-</div>
-<div class="col-md-8">
-  <div class="card-body">
-    <h5 class="card-title">ID ${res.id} <br> ${res.name} </h5>
-    <p class="card-text"><p>Altura ${res.height/10} m</p>
-    <p>Peso ${res.weight/10} Kg</p>
-    <p>Tipo: ${tipo} </p>        
-    <p>Formas: ${formas}</p>  
-    <p>Habilidades: ${habilidades}</p>  
-  </div>
-</div> `
+  BusquedaPoke.innerHTML+= `
+  <img src="${res.sprites.front_default}">
+    <div class="card-body mr-5 ml-5">
+      <h5 class="card-title" align="center">${res.name}</h5>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">ID: ${res.id}</li>
+        <li class="list-group-item">Altura: ${res.height/10} m</li>
+        <li class="list-group-item">Peso: ${res.weight/10} Kg</li>
+        <li class="list-group-item">Tipo: ${tipo} </li>        
+        <li class="list-group-item">Formas: ${formas}</li>  
+        <li class="list-group-item">Habilidades: ${habilidades}</li> 
+      </ul> 
+    </div>
+ `
    botonlista.innerHTML+=`<button  onclick="location.href='index.html';" type="button" class="btn btn-secondary btn-lg btn-block">Inicio</button>`
  })
 }
