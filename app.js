@@ -25,7 +25,6 @@ function LlamadaApi(url) {
               habilidades+=`<br>${element.ability.name} `;
             });
 
-
             pokelista.innerHTML+= `<div class="card" >
             <img src="${x.sprites.front_default}">
               <div class="card-body">
@@ -41,7 +40,6 @@ function LlamadaApi(url) {
               </div>
           </div>
           `
-          
           });
       };
         // Mostramos Los botones a los enlaces de siguiente o anterior de la paginacion de los pokemones 
@@ -92,6 +90,5 @@ function buscar(){
       </ul> 
     </div>
  `
-   botonlista.innerHTML+=`<button  onclick="location.href='index.html';" type="button" class="btn btn-secondary btn-lg btn-block">Inicio</button>`
  })
 }
