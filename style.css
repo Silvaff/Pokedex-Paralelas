@@ -10,3 +10,14 @@ h4 {
 h1 {
     text-align: center;
 }
+
+.caja {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.caja img {
+    border-radius: 50%;
+    width: auto;
+}
